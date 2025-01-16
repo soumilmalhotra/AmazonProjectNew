@@ -1,5 +1,9 @@
-import {products} from '../data/products.js';
+import {products , loadProducts} from '../data/products.js';
 import { addToCart , cart } from '../data/cart.js';
+
+loadProducts(renderProductGrid); 
+
+function renderProductGrid() {
 
 function updateCartQuantity(){
   let totalCartQuantity = 0;
@@ -73,4 +77,4 @@ products.forEach((product)=> {
       })
     })
 
-
+  }

@@ -6,7 +6,14 @@ import { loadProductsFetch } from "../data/products.js";
 // loadProductsFetch().then(()=>{
 // });
 async function loadPage() {
-    await loadProductsFetch();
+    try {
+        // throw 'systum hang';
+        await loadProductsFetch();
+
+    }catch (error) {
+        console.log(error);
+    }
+
     renderOrderSummary();
     renderPaymentSummary();
 }

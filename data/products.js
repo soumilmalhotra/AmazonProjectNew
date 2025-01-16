@@ -672,7 +672,10 @@ export function loadProductsFetch(){
   }).then((productsJSON) => {
     //automatically converted to normal and not JSON 
     products = productsJSON 
-  })
+  })/*.catch(() => {
+    //displayed when error occurs
+    console.log('error, try again')
+  })*/
   return promise;
 }
 

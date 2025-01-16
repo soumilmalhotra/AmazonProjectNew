@@ -2,6 +2,7 @@ import { cart } from "../../data/cart.js";
 import { products } from "../../data/products.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { calculateTotalCartQuantity } from "../../data/cart.js";
+import { addOrder } from "../../data/orders.js";
 export function renderPaymentSummary(){    
     let html ='';
     let totalCartCost = 0;
@@ -55,4 +56,26 @@ export function renderPaymentSummary(){
 `;
     document.querySelector('.payment-summary').innerHTML = html;
     calculateTotalCartQuantity(cart);
+
+    document.querySelector('.place-order-button').addEventListener('click', async() => {
+      try{ 
+      const response = await fetch('https://supersimplebackend.dev/orders' , {
+        method: 'POST',
+        headers:{
+          'Content-Type' : 'application/json'
+        },
+        body :JSON.stringify({
+          cart:cart
+        })
+      })
+
+      const order = await response.json();
+      console.log(order);
+      addOrder(order);
+    }
+    catch(error) {
+      console.log('error occured please try again');
+    }
+    window.location.href = 'orders.html';
+    })
 }

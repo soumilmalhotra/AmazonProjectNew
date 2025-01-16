@@ -1,8 +1,10 @@
-import {products , loadProducts} from '../data/products.js';
+import {products , loadProductsFetch} from '../data/products.js';
 import { addToCart , cart } from '../data/cart.js';
-
-loadProducts(renderProductGrid); 
-
+async function loadPage() {
+await loadProductsFetch();
+  renderProductGrid();
+}
+loadPage();
 function renderProductGrid() {
 
 function updateCartQuantity(){

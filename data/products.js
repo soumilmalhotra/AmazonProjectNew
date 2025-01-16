@@ -664,13 +664,26 @@
 
 export let products = [];
 
-export function loadProducts(func) {
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener('load', () => {
-   products = JSON.parse(xhr.response);
-   console.log('done');
-   func();
-  });
-  xhr.open('GET', 'https://supersimplebackend.dev/products');
-  xhr.send();
+   
+
+export function loadProductsFetch(){
+  const promise = fetch( 'https://supersimplebackend.dev/products').then((response) => {
+    return(response.json());
+  }).then((productsJSON) => {
+    //automatically converted to normal and not JSON 
+    products = productsJSON 
+  })
+  return promise;
 }
+
+// export function loadProducts(func) {
+//   const xhr = new XMLHttpRequest();
+//   xhr.addEventListener('load', () => {
+//    products = JSON.parse(xhr.response);
+//    console.log('done');
+//    func();
+//   });
+//   xhr.open('GET', 'https://supersimplebackend.dev/products');
+//   xhr.send();
+// }
+  
